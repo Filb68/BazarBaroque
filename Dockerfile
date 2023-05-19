@@ -7,11 +7,12 @@ WORKDIR /app
 # Copiez les fichiers de l'application dans le répertoire de travail
 COPY . /app
 
-# Installez les dépendances de l'application
+# Installer les dépendances de l'application
+RUN npm install
 
-EXPOSE 3000
+# Définir la variable d'environnement pour le port
+ENV PORT 3000
 
-
-# Définissez le point d'entrée pour le conteneur
-CMD [["npm start", "start"]
+# Définir la commande de démarrage de l'application
+CMD ["npm", "start"]
 
