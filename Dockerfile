@@ -13,6 +13,8 @@ RUN npm install
 # Définir la variable d'environnement pour le port
 ENV PORT 3000
 
+Expose 3000
+
 # Définir la commande de démarrage de l'application
 CMD ["npm", "start"]
 
