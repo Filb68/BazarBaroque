@@ -8,8 +8,8 @@ WORKDIR /app
 COPY . /app
 
 # Installez les dépendances de l'application
-RUN npm install
+
 
 # Définissez le point d'entrée pour le conteneur
-CMD ["npm", "start"]
+CMD [ "start"]
 
