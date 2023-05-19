@@ -13,5 +13,5 @@ EXPOSE 3000
 
 
 # Définissez le point d'entrée pour le conteneur
-CMD [ "start"]
+CMD [["npm", "start"]
 
