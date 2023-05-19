@@ -1,20 +1,13 @@
-# Utilisez l'image officielle de Node.js en tant qu'image de base
-FROM node:18
+FROM ruby:3.0
 
-# Définissez le répertoire de travail dans le conteneur
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 WORKDIR /app
-
-# Copiez les fichiers de l'application dans le répertoire de travail
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
+RUN bundle install
 COPY . /app
 
-# Installer les dépendances de l'application
-RUN npm install
+RUN rails assets:precompile
 
-# Définir la variable d'environnement pour le port
-ENV PORT 3000
-
-Expose 3000
-
-# Définir la commande de démarrage de l'application
-CMD ["npm", "start"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
 
