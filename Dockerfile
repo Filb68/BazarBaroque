@@ -1,29 +1,15 @@
-FROM ruby:3.0.0-alpine
+# Utilisez l'image officielle de Node.js en tant qu'image de base
+FROM node:18
 
-RUN apk add --update --virtual \
-        runtime-deps \
-        build-base \
-        libxml2-dev \
-        libxslt-dev \
-        sqlite-dev \
-        nodejs \
-        yarn \
-        libffi-dev \
-        git \
-        tzdata \
-        && rm -rf /var/cache/apk/*
-
-RUN gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org'
-
+# Définissez le répertoire de travail dans le conteneur
 WORKDIR /app
 
-COPY . /app/
+# Copiez les fichiers de l'application dans le répertoire de travail
+COPY . /app
 
-ENV BUNDLE_PATH /gems
-RUN bundle install --jobs "$(nproc)" --retry 3
-RUN yarn install
+# Installez les dépendances de l'application
+RUN npm install
 
-ENTRYPOINT ["bin/rails"]
-CMD ["s", "-b", "0.0.0.0"]
+# Définissez le point d'entrée pour le conteneur
+CMD ["npm", "start"]
 
-EXPOSE 3000
