@@ -5,7 +5,7 @@ Rails.application.configure do
 
 
     # Réglement du problème avec back4app.
-  config.hosts << "bazarbaroque2-bistro.b4a.run"
+    config.hosts << "bazarbaroque2-bistro.b4a.run"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
