@@ -2,7 +2,12 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  
+  # Pour indiquer que l'app est en prodction (fonctionne sans ça sur backforapp.com)
+  
+  config.force_ssl = true # (si vous souhaitez forcer l'utilisation de SSL)
+  ENV['RAILS_ENV'] = 'production'
+  
 
     # Réglement du problème avec back4app.
     config.hosts << "bazarbaroque2-bistro.b4a.run"
